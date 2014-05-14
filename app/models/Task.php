@@ -41,7 +41,7 @@ class Task extends Eloquent  {
 	public static function scrape($name, $uri)
 	{
 		return static::create(array(
-			'class' => 'TaskController',
+			'class' => 'scraper',
 			'method' => 'scrape',
 			'params' => compact('name', 'uri'),
 		));
