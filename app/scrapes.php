@@ -39,9 +39,15 @@ $container->addPage('ah-product-list', function(Crawler $crawler) {
 	$crawler->filter('.product')->each(function(Crawler $node) {
 
 		$name = $node->filter('.detail h2')->first()->text();
-		$price = $node->filter('.price ins')->first()->text();;
+		$price = $node->filter('.price ins')->first()->text();
 
-		$product = Product::firstOrCreate(compact('name'));
+		Event::fire('create.product.name', array(&$name));
+		Event::fire('create.product.price', array(&$price));
+
+		$slug = Str::slug($name);
+
+		$product = Product::firstOrCreate(compact('slug'));
+		$product->name = $name;
 		$product->price = $price;
 		$product->save();
 	});

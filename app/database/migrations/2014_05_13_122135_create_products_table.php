@@ -18,9 +18,10 @@ class CreateProductsTable extends Migration {
 			$table->timestamps();
 
 			$table->string('name');
+			$table->string('slug');
 			$table->float('price');
 
-			$table->unique('name');
+			$table->unique('slug');
 			$table->index('price');
 		});
 	}
