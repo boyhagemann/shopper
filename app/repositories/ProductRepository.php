@@ -6,20 +6,11 @@ class ProductRepository
 	 * @param $term
 	 * @return mixed
 	 */
-	public static function search($term)
-	{
-		return static::searchQuery($term)->get();
-	}
-
-	/**
-	 * @param $term
-	 * @return mixed
-	 */
-	public static function searchQuery($term)
+	public static function search(Array $input)
 	{
 		$q = Product::query();
-		$q->where('name', 'LIKE', '%' . $term . '%');
-
-		return $q;
+		Event::fire('product.search', array($q, $input));
+		return $q->get();
 	}
+
 }

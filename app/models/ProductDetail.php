@@ -12,6 +12,10 @@ class ProductDetail extends Eloquent  {
 	 */
 	protected $table = 'product_details';
 
+	protected $with = array('store');
+
+	protected $hidden = array('id', 'created_at', 'updated_at', 'store_id', 'product_id');
+
 	/**
 	 * @return Product
 	 */

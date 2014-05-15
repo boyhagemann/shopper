@@ -7,6 +7,7 @@ class ProductManager
 		$name = $label;
 		Event::fire('create.product.name', array(&$name));
 		Event::fire('create.product.price', array(&$price));
+		Event::fire('create.product-detail.label', array(&$label));
 
 
 		$store = Store::where('slug', $store)->firstOrFail();

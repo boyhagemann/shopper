@@ -12,6 +12,8 @@ class Product extends Eloquent  {
 	 */
 	protected $table = 'products';
 
+	protected $hidden = array('id', 'created_at', 'updated_at');
+
 	protected $fillable = array('name');
 
 	/**
@@ -20,5 +22,13 @@ class Product extends Eloquent  {
 	public function details()
 	{
 		return $this->hasMany('ProductDetail');
+	}
+
+	/**
+	 * @return ProductDetail[]
+	 */
+	public function cheapest()
+	{
+		return $this->hasOne('ProductDetail')->orderBy('price');
 	}
 }

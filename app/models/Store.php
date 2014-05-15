@@ -12,6 +12,8 @@ class Store extends Eloquent  {
 	 */
 	protected $table = 'stores';
 
+	protected $hidden = array('id', 'created_at', 'updated_at', 'slug');
+
 	protected $fillable = array('name');
 
 	/**
