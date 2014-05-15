@@ -36,9 +36,9 @@ Scraper::add('ah-product-list', function(Crawler $crawler) {
 
 	$crawler->filter('.product')->each(function(Crawler $node) {
 
-		$name = $node->filter('.detail h2')->first()->text();
+		$label = $node->filter('.detail h2')->first()->text();
 		$price = $node->filter('.price ins')->first()->text();
 
-		ProductManager::add('ah', $name, $price);
+		ProductManager::add('ah', $label, $price);
 	});
 });

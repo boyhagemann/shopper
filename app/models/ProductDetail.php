@@ -12,8 +12,6 @@ class ProductDetail extends Eloquent  {
 	 */
 	protected $table = 'product_details';
 
-	protected $fillable = array('store_id', 'name', 'price');
-
 	/**
 	 * @return Product
 	 */

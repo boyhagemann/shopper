@@ -19,9 +19,12 @@ class CreateProductDetailsTable extends Migration {
 
 			$table->integer('store_id');
 			$table->integer('product_id');
+			$table->string('label');
 			$table->string('price');
 
 			$table->unique(array('store_id', 'product_id'));
+			$table->index('label');
+			$table->index('price');
 		});
 	}
 

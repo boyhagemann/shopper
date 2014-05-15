@@ -11,3 +11,6 @@ Route::get('/cron', function()
 {
 	App::make('TaskManager')->run(15);
 });
+
+
+Route::get('product', 'ProductController@search');
