@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"boyhagemann/scrape": "dev-master"
+		"boyhagemann/scrape": "dev-master",
+		"fzaninotto/faker": "1.*"
 	},
 	"autoload": {
 		"classmap": [

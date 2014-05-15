@@ -60,3 +60,19 @@ Event::listen('product.search', function($q, $input) {
 	}
 
 });
+
+
+Event::listen('product.search', function($q, $input) {
+
+	if(!isset($input['stores'])) {
+		return;
+	}
+
+	$stores = explode(',', $input['stores']);
+
+	$q->whereHas('stores', function($q) use($stores) {
+		$q->whereIn('slug', $stores);
+	});
+});
+
+

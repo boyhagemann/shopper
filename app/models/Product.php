@@ -14,14 +14,20 @@ class Product extends Eloquent  {
 
 	protected $hidden = array('id', 'created_at', 'updated_at');
 
-	protected $fillable = array('name');
-
 	/**
 	 * @return ProductDetail[]
 	 */
 	public function details()
 	{
 		return $this->hasMany('ProductDetail');
+	}
+
+	/**
+	 * @return Store[]
+	 */
+	public function stores()
+	{
+		return $this->belongsToMany('Store', 'product_details');
 	}
 
 	/**

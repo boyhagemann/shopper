@@ -9,7 +9,7 @@ Route::get('/', function()
 
 Route::get('/cron', function()
 {
-	App::make('TaskManager')->run(15);
+	App::make('TaskManager')->run(30);
 });
 
 
