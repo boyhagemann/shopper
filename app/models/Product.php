@@ -12,5 +12,13 @@ class Product extends Eloquent  {
 	 */
 	protected $table = 'products';
 
-	protected $fillable = array('name', 'slug', 'price');
+	protected $fillable = array('name');
+
+	/**
+	 * @return ProductDetail[]
+	 */
+	public function details()
+	{
+		return $this->hasMany('ProductDetail');
+	}
 }
