@@ -2,15 +2,13 @@
 
 use Symfony\Component\DomCrawler\Crawler;
 
-$container = App::make('Boyhagemann\Scrape\Container');
-
 /**
  * Startpagina met alle categorie-links. Hier scannen we de links
  * om een overzicht van producten te krijgen.
  *
  * @see http://www.ah.nl/appie/producten
  */
-$container->addPage('ah-start', function(Crawler $crawler) {
+Scraper::add('ah-start', function(Crawler $crawler) {
 
 	$crawler->filter('#category-landing a')->each(function (Crawler $node) {
 		Task::scrape('ah-cat', 'http://www.ah.nl' . $node->attr('href'));
@@ -23,7 +21,7 @@ $container->addPage('ah-start', function(Crawler $crawler) {
  *
  * @see http://www.ah.nl/appie/producten/aardappel-groente-fruit
  */
-$container->addPage('ah-cat', function(Crawler $crawler) {
+Scraper::add('ah-cat', function(Crawler $crawler) {
 
 	$crawler->filter('h2.h2 a')->each(function (Crawler $node) {
 		Task::scrape('ah-product-list',  $node->attr('href'));
@@ -34,7 +32,7 @@ $container->addPage('ah-cat', function(Crawler $crawler) {
  * Dit is het overzicht van alle producten gepagineerd (60).
  *
  */
-$container->addPage('ah-product-list', function(Crawler $crawler) {
+Scraper::add('ah-product-list', function(Crawler $crawler) {
 
 	$crawler->filter('.product')->each(function(Crawler $node) {
 

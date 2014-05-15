@@ -4,29 +4,23 @@ use Illuminate\Container\Container;
 
 class TaskManager
 {
+    /**
+     *
+     * @var Container 
+     */
 	protected $container;
 
-	/**
-	 * @param $name
-	 * @param $uri
-	 * @return Task
-	 */
-	public static function scrape($name, $uri)
-	{
-		return Task::create(array(
-			'class' => '',
-			'method' => '',
-			'params' => compact('name', 'uri'),
-		));
-	}
-
+    /**
+     * 
+     * @param Container $container
+     */
 	public function __construct(Container $container)
 	{
 		$this->container = $container;
 	}
 
 	/**
-	 * @param $limit
+	 * @param int $limit
 	 */
 	public function run($limit)
 	{
@@ -36,7 +30,7 @@ class TaskManager
 				$task->delete();
 			}
 			catch(Exception $e) {
-
+                echo $e->getMessage();
 			}
 		}
 	}
@@ -64,6 +58,13 @@ class TaskManager
 		return call_user_func_array(array($object, $method), array_values($call_args));
 	}
 
+    /**
+     * 
+     * @param \ReflectionMethod $method
+     * @param array $args
+     * @return type
+     * @throws \RuntimeException
+     */
 	private function prepareArguments(\ReflectionMethod $method, array $args = null) {
 		$arguments = array();
 
