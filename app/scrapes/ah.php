@@ -2,33 +2,6 @@
 
 use Symfony\Component\DomCrawler\Crawler;
 
-$faker = Faker\Factory::create('nl_NL');
-dd(utf8_decode($faker->name));
-
-Scraper::add('test', function(Crawler $crawler) {
-
-	$crawler->filter('a._Zc')->each(function($node) {
-		Scraper::scrape('product', 'https://www.google.nl' . $node->attr('href'));
-	});
-});
-
-Scraper::add('product', function(Crawler $crawler) {
-
-	$crawler->filter('.review-section-results .review-content')->each(function($node) {
-
-		die($node->text());
-	});
-});
-
-Scraper::scrape('test', 'https://www.google.nl/search?tbm=shop&q=laptops');
-
-
-
-
-
-
-
-
 /**
  * Startpagina met alle categorie-links. Hier scannen we de links
  * om een overzicht van producten te krijgen.
